@@ -1,0 +1,54 @@
+package com.bit.myapp2.model;
+
+import java.sql.SQLException;
+import java.util.List;
+
+import javax.sql.DataSource;
+
+import org.apache.tomcat.dbcp.dbcp.BasicDataSource;
+
+import com.bit.myapp2.model.entity.GuestVo;
+
+public class GuestDao01Impl implements GuestDao<GuestVo> {
+	DataSource ds;
+	
+	public GuestDao01Impl() {
+		BasicDataSource bds = new BasicDataSource();
+		bds.setDriverClassName("oracle.jdbc.OracleDriver");
+		bds.setUrl("jdbc:oracle:thin:@localhost:1521:xe");
+		bds.setUsername("scott");
+		bds.setPassword("tiger");
+		ds=bds;
+	}
+
+	@Override
+	public List<GuestVo> selectAll() throws SQLException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public GuestVo selectOne(int pk) throws SQLException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public int insertOne(GuestVo t) throws SQLException {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int updateOne(GuestVo t) throws SQLException {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int deleteOne(int pk) throws SQLException {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+	
+}

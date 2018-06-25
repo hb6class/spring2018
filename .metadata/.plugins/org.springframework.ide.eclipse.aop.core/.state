@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aop-reference-model>
+<aop-project name="sts01"/>
+<aop-project name="sts02"/>
+</aop-reference-model>

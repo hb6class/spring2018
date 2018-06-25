@@ -1,0 +1,31 @@
+package com.bit.myapp2.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.bit.myapp2.model.GuestDao;
+import com.bit.myapp2.model.entity.GuestVo;
+
+@Controller
+@RequestMapping("/bbs")
+public class BbsController {
+	@Autowired
+	GuestDao<GuestVo> guestDao;
+	
+	public String list(Model model) {
+		model.addAttribute("alist", guestDao.selectAll());
+		return "guest2/list";
+	}
+}
+
+
+
+
+
+
+
+
+
+

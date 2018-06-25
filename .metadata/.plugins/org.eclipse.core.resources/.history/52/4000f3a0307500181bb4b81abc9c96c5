@@ -1,0 +1,13 @@
+package com.bit.myapp01;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.servlet.ModelAndView;
+
+@Controller
+public class Ex01Controller {
+
+	
+	public ModelAndView execute() throws Exception{
+		return new ModelAndView("index");
+	}
+}

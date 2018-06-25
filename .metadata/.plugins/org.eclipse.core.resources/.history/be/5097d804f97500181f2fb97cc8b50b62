@@ -1,0 +1,5 @@
+package com.bit.myapp2.model;
+
+public class GuestDao03Impl implements GuestDao<T> {
+
+}

@@ -1,0 +1,28 @@
+package com.bit.myapp03.controller;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+
+@Controller
+public class AddController {
+
+	@RequestMapping("/guest/add")
+	public String addForm(Model model) {
+		model.addAttribute("path", "myapp03");
+		return "add";
+	}
+	@RequestMapping(value="/guest/",method=RequestMethod.POST)
+	public String add(Model model) {
+		model.addAttribute("path", "myapp03");
+		return "add";
+	}
+	
+	
+}
+
+
+
+
+

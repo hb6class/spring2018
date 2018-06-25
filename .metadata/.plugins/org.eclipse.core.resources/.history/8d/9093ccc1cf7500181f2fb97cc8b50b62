@@ -1,0 +1,57 @@
+package com.bit.myapp2;
+
+import java.sql.SQLException;
+
+import javax.servlet.http.HttpServletRequest;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.bit.myapp2.model.GuestDao;
+import com.bit.myapp2.model.GuestDao01Impl;
+
+@Controller
+public class HomeController {
+	GuestDao<?> dao=new GuestDao01Impl();
+	
+	@RequestMapping("/")
+	public String index() {
+		return "index";
+	}
+	
+	@RequestMapping("/list.bit")
+	public String list(Model model){
+		try {
+			model.addAttribute("alist", dao.selectAll());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "guest1/list";
+	}
+	
+	@RequestMapping("/detail.bit")
+	public String detail(Model model,HttpServletRequest req) {
+		String idx=req.getParameter("idx");
+		int pk=Integer.parseInt(idx);
+		
+		try {
+			model.addAttribute("bean", dao.selectOne(pk));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return "guest1/detail";
+	}
+	
+	@RequestMapping("add.bit")
+	public String add() {
+		return "guest1/add";
+	}
+}
+
+
+
+
+
+

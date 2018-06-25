@@ -1,0 +1,43 @@
+package com.bit.myapp2.model;
+
+import java.sql.SQLException;
+import java.util.List;
+
+import org.springframework.jdbc.core.JdbcTemplate;
+
+import com.bit.myapp2.model.entity.GuestVo;
+
+public class GuestDao03Impl implements GuestDao<GuestVo> {
+	JdbcTemplate jdbcTemplate;
+
+	@Override
+	public List<GuestVo> selectAll() throws SQLException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public GuestVo selectOne(int pk) throws SQLException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public int insertOne(GuestVo t) throws SQLException {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int updateOne(GuestVo t) throws SQLException {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int deleteOne(int pk) throws SQLException {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+}

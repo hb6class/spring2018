@@ -1,0 +1,11 @@
+package com.bit.myapp2.controller;
+
+import org.springframework.stereotype.Controller;
+
+@Controller
+public class Ex02Controller {
+	
+	public String ex01() {
+		return "ex01";
+	}
+}

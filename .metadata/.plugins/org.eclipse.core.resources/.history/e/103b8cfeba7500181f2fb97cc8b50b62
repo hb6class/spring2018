@@ -1,0 +1,31 @@
+package com.bit.myapp2;
+
+import java.sql.SQLException;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.bit.myapp2.model.GuestDao;
+
+@Controller
+public class HomeController {
+	
+	@RequestMapping("/")
+	public String index() {
+		return "index";
+	}
+	
+	@RequestMapping("/list.bit")
+	public String list(Model model) throws SQLException {
+		GuestDao<?> dao=null;
+		model.addAttribute("alist", dao.selectAll());
+		return "list";
+	}
+}
+
+
+
+
+
+

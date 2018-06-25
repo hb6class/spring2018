@@ -1,0 +1,13 @@
+package com.bit.myapp2.controller;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+@Controller
+@RequestMapping("/bbs")
+public class BbsController {
+	
+	public String list() {
+		return "guest2/list";
+	}
+}

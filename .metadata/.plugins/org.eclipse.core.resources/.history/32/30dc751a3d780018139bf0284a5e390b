@@ -1,0 +1,13 @@
+package com.bit.myapp03.controller;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+@Controller
+public class AddController {
+
+	@RequestMapping("/guest/add")
+	public String addForm() {
+		return "add";
+	}
+}

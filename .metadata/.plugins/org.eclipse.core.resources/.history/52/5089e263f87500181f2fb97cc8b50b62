@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	
+	<!-- Root Context: defines shared resources visible to all other web components -->
+	<beans:bean id="dataSource" class="org.apache.tomcat.dbcp.dbcp.BasicDataSource">
+		<beans:property name="driverClassName" value="oracle.jdbc.OracleDriver"/>
+		<beans:property name="url" value="jdbc:oracle:thin:@localhost:1521:xe"/>
+		<beans:property name="username" value="scott"/>
+		<beans:property name="password" value="tiger"/>
+	</beans:bean>
+	
+	<beans:bean id="guestDao" class="com.bit.myapp2.model.GuestDao02Impl"/>	
+</beans>

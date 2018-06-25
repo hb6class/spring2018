@@ -1,0 +1,20 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<%@ include file="template/header.jsp" %>
+</head>
+<body>
+<%@ include file="template/menu.jsp" %>
+<div>sabun</div>
+<div class="well well-sm">${bean.sabun }</div>
+<div>name</div>
+<div class="well well-sm">${bean.name }</div>
+<div>nalja</div>
+<div class="well well-sm">${bean.nalja }</div>
+<div>pay</div>
+<div class="well well-sm">${bean.pay }</div>
+</body>
+</html>

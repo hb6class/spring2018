@@ -1,0 +1,67 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<%@ include file="template/header.jsp" %>
+<script type="text/javascript">
+	$(function(){
+		$("input").hide();
+		$("form>button").hide();
+		$("#edit").click(function(){
+			$(this).hide();
+			$("input").show();
+			$("form>button").show();
+			$(".di").hide();
+		});
+	});
+</script>
+</head>
+<body>
+<%@ include file="template/menu.jsp" %>
+<form method="post">
+	<div>
+		<label for="sabun">sabun</label>
+		<div class="well well-sm">${bean.sabun }</div>
+		<input type="hidden" value="${bean.sabun }" name="sabun" id="sabun" placeholder="sabun" />
+	</div>
+	<div>
+		<label for="name">name</label>
+		<div class="well well-sm di">${bean.name }</div>
+		<input type="text" value="${bean.name }" name="name" id="name" placeholder="name" />
+	</div>
+	<div>
+		<label>nalja</label>
+		<div class="well well-sm">${bean.nalja }</div>
+	</div>
+	<div>
+		<label for="pay">pay</label>
+		<div class="well well-sm di">${bean.pay }</div>
+		<input type="text" value="${bean.pay }" name="pay" id="pay" placeholder="pay" />
+	</div>
+	<button type="submit" class="btn btn-danger">수정</button>
+	<button type="reset" class="btn btn-default">취소</button>
+</form>
+<button id="edit" class="btn btn-default">수정</button>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

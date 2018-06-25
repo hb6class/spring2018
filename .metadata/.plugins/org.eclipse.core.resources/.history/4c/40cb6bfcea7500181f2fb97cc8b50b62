@@ -1,0 +1,27 @@
+package com.bit.myapp2.controller;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+@Controller
+@RequestMapping("/guest3")
+public class Ex02Controller {
+	
+	@RequestMapping("/lec01")
+	public String ex01() {
+		return "ex10";
+	}
+	@RequestMapping("/lec02")
+	public String ex03(String id, String pw, Model model,HttpServletRequest req) {
+		HttpSession session = req.getSession();
+		if(id.equals("admin") && pw.equals("1234")) {
+			session.addAttribute("login", true);
+			
+		}
+		return "ex11";
+	}
+}

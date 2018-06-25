@@ -1,0 +1,19 @@
+package com.bit.myapp2.controller;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+@Controller
+public class Ex01Controller {
+
+	@RequestMapping("/ex01")
+	public String execute() {
+		return "ex01";
+	}
+	
+	@RequestMapping(value="/guest/ex02")
+	public void execute2() {
+	}
+	
+	
+}
