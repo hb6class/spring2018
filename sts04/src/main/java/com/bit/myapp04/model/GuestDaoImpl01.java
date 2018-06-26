@@ -11,14 +11,30 @@ import javax.sql.DataSource;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.PreparedStatementCreator;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.jdbc.datasource.DataSourceTransactionManager;
+import org.springframework.transaction.PlatformTransactionManager;
+import org.springframework.transaction.TransactionDefinition;
+import org.springframework.transaction.TransactionStatus;
+import org.springframework.transaction.support.DefaultTransactionDefinition;
 
 import com.bit.myapp04.model.entity.GuestVo;
 
 public class GuestDaoImpl01 implements GuestDao {
 	JdbcTemplate jdbcTemplate;
+	PlatformTransactionManager transactionManager;
+	
+	
+//	public GuestDaoImpl01(PlatformTransactionManager transactionManager
+//			,TransactionDefinition definition) {
+//		transactionManager.getTransaction(definition);
+//	}
 	
 	public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {
 		this.jdbcTemplate = jdbcTemplate;
+	}
+	
+	public void setTransactionManager(PlatformTransactionManager transactionManager) {
+		this.transactionManager = transactionManager;
 	}
 
 	
@@ -47,20 +63,42 @@ public class GuestDaoImpl01 implements GuestDao {
 		return null;
 	}
 
+	/// 1000, 1000+111
 	@Override
 	public int insertOne(final GuestVo bean) throws SQLException {
 		final String sql="INSERT INTO GUEST VALUES (?,?,SYSDATE,?)";
-		return jdbcTemplate.update(new PreparedStatementCreator() {
-			
-			@Override
-			public PreparedStatement createPreparedStatement(Connection conn) throws SQLException {
-				PreparedStatement pstmt = conn.prepareStatement(sql);
-				pstmt.setInt(1, bean.getSabun());
-				pstmt.setString(2, bean.getName());
-				pstmt.setInt(3, bean.getPay());
-				return pstmt;
-			}
-		});
+		
+		TransactionDefinition definition=new DefaultTransactionDefinition();
+		TransactionStatus status=transactionManager.getTransaction(definition);
+		try {
+			jdbcTemplate.update(new PreparedStatementCreator() {
+				
+				@Override
+				public PreparedStatement createPreparedStatement(Connection conn) throws SQLException {
+					PreparedStatement pstmt = conn.prepareStatement(sql);
+					pstmt.setInt(1, bean.getSabun());
+					pstmt.setString(2, bean.getName());
+					pstmt.setInt(3, bean.getPay());
+					return pstmt;
+				}
+			});
+			bean.setSabun(bean.getSabun()+333);
+			jdbcTemplate.update(new PreparedStatementCreator() {
+				
+				@Override
+				public PreparedStatement createPreparedStatement(Connection conn) throws SQLException {
+					PreparedStatement pstmt = conn.prepareStatement(sql);
+					pstmt.setInt(1, bean.getSabun());
+					pstmt.setString(2, bean.getName());
+					pstmt.setInt(3, bean.getPay());
+					return pstmt;
+				}
+			});
+			transactionManager.commit(status);
+		}catch (Exception e) {
+			transactionManager.rollback(status);
+		}
+		return 0;
 	}
 
 	@Override
@@ -82,7 +120,16 @@ public class GuestDaoImpl01 implements GuestDao {
 	@Override
 	public int deleteOne(final int sabun) throws SQLException {
 		final String sql="DELETE FROM GUEST WHERE SABUN=?";
-		return jdbcTemplate.update(new PreparedStatementCreator() {
+		
+		
+		// 생성자를 이용해 dataSource 주입
+//		ptm=new DataSourceTransactionManager();
+		
+		TransactionDefinition definition=new DefaultTransactionDefinition();
+		TransactionStatus status=transactionManager.getTransaction(definition);
+		
+		
+		int result=jdbcTemplate.update(new PreparedStatementCreator() {
 			
 			@Override
 			public PreparedStatement createPreparedStatement(Connection conn) throws SQLException {
@@ -91,6 +138,10 @@ public class GuestDaoImpl01 implements GuestDao {
 				return pstmt;
 			}
 		});
+		transactionManager.commit(status);
+//		transactionManager.rollback(status);
+		
+		return result;
 	}
 
 }
