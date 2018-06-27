@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="guest">
+  
+  	<select id="selectAll" resultType="dto">
+  		SELECT * FROM GUEST ORDER BY SABUN
+  	</select>
+  	
+  	<select id="total" resultType="int">
+  		SELECT COUNT(*) FROM GUEST
+  	</select>
+  	
+  	<insert id="insertOne" parameterType="dto">
+  		INSERT INTO GUEST VALUES (#{sabun},
+  		<choose>
+		    <when test='name==null or name==""'>
+		      '이름없음'
+		    </when>
+		    <otherwise>
+		      #{name}
+		    </otherwise>
+  		</choose>
+  		,SYSDATE,#{pay})
+  	</insert>
+  	
+  	<delete id="deleteOne" parameterType="int">
+  		DELETE FROM GUEST WHERE SABUN=#{val}
+  	</delete>
+  	
+  	<update id="updateOne" parameterType="dto">
+  		UPDATE GUEST SET NAME=#{name},PAY=#{pay} WHERE SABUN=#{sabun}
+  	</update>
+  
+  </mapper>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
