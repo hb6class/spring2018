@@ -1,0 +1,75 @@
+<!Doctype html>
+<html>
+    <head>
+        <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="css/jquery.mobile.icons.min.css"/>
+        <link rel="stylesheet" href="css/my.css"/>
+        <link rel="stylesheet" href="css/jquery.mobile-1.4.5.css"/>
+        <script src="js/jquery-1.12.4.js"></script>
+        <script src="js/jquery.mobile-1.4.5.js"></script>
+        <script>
+            $(function(){
+                $('#p1').on('swipeleft',function(){
+                    $.mobile.changePage('#p2',{transition:'slide'});
+                });
+                $('#p2').on('swipeleft',function(){
+                    $.mobile.changePage('#p3',{transition:'slide'});
+                });
+                $('#p3').on('swipeleft',function(){
+                    $.mobile.changePage('#p4',{transition:'slide'});
+                });
+                $('#p4').on('swipeleft',function(){
+                    $.mobile.changePage('#p1',{transition:'slide'});
+                });
+                
+                
+                $('#p2').on('swiperight',function(){
+                    $.mobile.changePage('#p1',{transition:'slide',reverse:true});
+                });
+                $('#p3').on('swiperight',function(){
+                    $.mobile.changePage('#p2',{transition:'slide',reverse:true});
+                });
+                $('#p4').on('swiperight',function(){
+                    $.mobile.changePage('#p3',{transition:'slide',reverse:true});
+                });
+                $('#p1').on('swiperight',function(){
+                    $.mobile.changePage('#p4',{transition:'slide',reverse:true});
+                });
+            });
+            
+        </script>
+    </head>
+    <body>
+        <div id="p1" data-role="page" data-theme="a">
+            <div data-role="header">
+                <h1>page1</h1>
+            </div>
+            <div data-role="content"></div>
+            <div data-role="footer" data-position="fixed"></div>
+        </div>
+        <div id="p2" data-role="page" data-theme="b">
+            <div data-role="header">
+                <h1>page2</h1>
+            </div>
+            <div data-role="content"></div>
+            <div data-role="footer" data-position="fixed"></div>
+        </div>
+        <div id="p3" data-role="page" data-theme="c">
+            <div data-role="header">
+                <h1>page3</h1>
+            </div>
+            <div data-role="content"></div>
+            <div data-role="footer" data-position="fixed"></div>
+        </div>
+        <div id="p4" data-role="page" data-theme="d">
+            <div data-role="header">
+                <h1>page4</h1>
+            </div>
+            <div data-role="content"></div>
+            <div data-role="footer" data-position="fixed"></div>
+        </div>
+        
+    </body>
+</html>
