@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="com.bit.myApp.model.GuestDao">
+  	<select id="selectAll" resultType="com.bit.myApp.model.entity.GuestVo">
+  	SELECT * FROM GUEST ORDER BY SABUN DESC
+  	</select>
+  	<insert id="insertOne" parameterType="com.bit.myApp.model.entity.GuestVo">
+  	INSERT INTO GUEST VALUES (#{sabun},#{name},SYSDATE,#{pay})
+  	</insert>
+  </mapper>
+
+

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+        <link rel="stylesheet" type="text/css" href="css/index.css">
+        <title>Hello World</title>
+    </head>
+    <body>
+        <div class="app">
+            <h1>Apache Cordova</h1>
+            <button>Capture Photo</button> <br>
+            <button>Capture Editable Photo</button> <br>
+            <button>From Photo Library</button><br>
+            <button>From Photo Album</button><br>
+            <img id="smallImage" src="" />
+            <img id="largeImage" src="" />
+        </div>
+        <script type="text/javascript" src="js/jquery-1.12.4.js"></script>
+        <script type="text/javascript" src="cordova.js"></script>
+        <script type="text/javascript" charset="utf-8">
+    var pictureSource;
+    var destinationType;
+    
+    document.addEventListener("deviceready",onDeviceReady,false);
+    
+    function onDeviceReady() {
+        pictureSource=navigator.camera.PictureSourceType;
+        destinationType=navigator.camera.DestinationType;
+    }
+    
+    function onPhotoDataSuccess(imageData) {
+      
+      var smallImage = document.getElementById('smallImage');
+      
+      smallImage.style.display = 'block';
+      
+      smallImage.src = "data:image/jpeg;base64," + imageData;
+    }
+    
+    function onPhotoURISuccess(imageURI) {
+      
+      var largeImage = document.getElementById('largeImage');
+      
+      largeImage.style.display = 'block';
+      
+      largeImage.src = imageURI;
+    }
+    
+    function capturePhoto() {
+      navigator.camera.getPicture(onPhotoDataSuccess, onFail, { quality: 50,
+        destinationType: destinationType.DATA_URL });
+    }
+    
+    function capturePhotoEdit() {
+      navigator.camera.getPicture(onPhotoDataSuccess, onFail, { quality: 20, allowEdit: true,
+        destinationType: destinationType.DATA_URL });
+    }
+    
+    function getPhoto(source) {
+      navigator.camera.getPicture(onPhotoURISuccess, onFail, { quality: 50,
+        destinationType: destinationType.FILE_URI,
+        sourceType: source });
+    }
+    
+    function onFail(message) {
+      alert('Failed because: ' + message);
+    }
+        $(function(){
+            $('button').eq(0).click(function(){
+                capturePhoto();
+            });
+            $('button').eq(1).click(function(){
+                capturePhotoEdit();
+            });
+            $('button').eq(2).click(function(){
+                getPhoto(pictureSource.PHOTOLIBRARY);
+            });
+            $('button').eq(3).click(function(){
+                getPhoto(pictureSource.SAVEDPHOTOALBUM);
+            });
+            
+        });
+    </script>
+        
+    </body>
+</html>
